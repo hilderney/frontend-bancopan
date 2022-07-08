@@ -1,0 +1,14 @@
+<div class="home">
+  <button>
+    Adicionar Usuário
+    <mat-icon aria-hidden="false" aria-label="Adicionar Usuário">
+      add_circle_outline
+    </mat-icon>
+  </button>
+
+  <ul class="usuarios" *ngIf="!!usuarios && usuarios.length > 0">
+    <li class="usuario" *ngFor="let usuario of usuarios; trackBy:identificarUsuario">
+      <usuario [usuario]="usuario"></usuario>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,17 @@
+$default-space: 8px;
+$font-size: 16px;
+
+$text-color: #131313;
+$text-light: #a3a3a3;
+$accent-color: #03a9f4;
+$warn-color: #eb4a46;
+
+
+$space-minimum: calc($default-space / 8);
+$space-tiny: calc($default-space / 4);
+$space-small: calc($default-space / 2);
+$space-medium: $default-space;
+$space-large: calc($default-space * 2);
+$space-larger: calc($default-space * 3);
+$space-maximum: calc($default-space * 4);
+
