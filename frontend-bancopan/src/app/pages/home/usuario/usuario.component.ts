@@ -11,11 +11,9 @@ export class UsuarioComponent implements OnInit {
   @Input() usuario!: IUsuario;
 
   constructor() {
-    console.log(this.usuario)
   }
 
   ngOnInit() {
-    console.log(this.usuario)
   }
 
 }

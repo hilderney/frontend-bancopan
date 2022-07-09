@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { take } from 'rxjs';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
+import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,29 +12,38 @@ export class HomeComponent implements OnInit {
 
   usuarios: IUsuario[] = [
     {
-      nome: 'Usuário Um',
+      name: 'My name 1',
       cpf: '221.065.728.83',
       email: 'usuario@um.com',
-      telefone: '11981022578',
+      phone: '11981022578',
     }
     , {
-      nome: 'Usuário Dois',
+      name: 'My name 2',
       cpf: '221.065.728.83',
       email: 'usuario@um.com',
-      telefone: '11981022578',
+      phone: '11981022578',
     }
   ];
 
 
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
+    const teste = this.userService.fetchUsers()
+      .pipe(take(1))
+      .subscribe();
+    console.log('retorno da Observable', teste);
   }
 
   identificarUsuario(index: number, usuario: IUsuario) {
-    console.log(usuario)
-    return usuario.nome;
+    return usuario.name;
   }
 
 }

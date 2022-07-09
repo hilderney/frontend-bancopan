@@ -5,6 +5,7 @@ import { HomeRoutingModule } from './home-routing.module';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 import { UsuarioComponent } from './usuario/usuario.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 

@@ -1,11 +1,19 @@
-<mat-card>
-  <mat-card-title>
-    {{ usuario.nome }}
-  </mat-card-title>
-  <mat-card-content>
-    <label for=""> CPF </label> {{ usuario.cpf }}
-    <label for=""> E-mail </label> {{ usuario.email }}
-    <label for=""> Telefone </label> {{ usuario.telefone }}
-  </mat-card-content>
-</mat-card>
+<div class="usuario">
+  <div class="title">
+    {{ usuario.name }}
+  </div>
+  <div class="content">
+    <div class="item">
+      <label for=""> CPF: </label> <span>{{ usuario.cpf }}</span>
+    </div>
+    <div class="item">
+      <label for=""> E-mail: </label> <span>{{ usuario.email }}</span>
+    </div>
+    <div class="item">
+      <label for=""> Telefone: </label> <span>{{ usuario.phone }}</span>
+    </div>
+  </div>
+  <div class="actions">
 
+  </div>
+</div>
