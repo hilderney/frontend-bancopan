@@ -8,15 +8,15 @@ export class usuarioModel implements IUsuario {
   public email: string;
 
   constructor(usuario: IUsuario) {
-    id: usuario.id ? usuario.id : this.gerarNovoId(usuario);
-    name: usuario.name
-    cpf: usuario.cpf
-    phone: usuario.phone
-    email: usuario.email
+    this.id = usuario.id ? usuario.id : this.gerarNovoId(usuario);
+    this.name = usuario.name
+    this.cpf = usuario.cpf
+    this.phone = usuario.phone
+    this.email = usuario.email
   }
 
-  gerarNovoId(usuario: IUsuario) {
-
+  gerarNovoId(usuario: IUsuario): number {
+    return 0;
   }
 
 }
