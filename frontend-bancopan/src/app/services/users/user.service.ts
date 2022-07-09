@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
 import { environment } from 'src/environments/environment';
 
@@ -10,27 +10,45 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
   private url = `${environment.api}/users`;
+  storageNames = {
+    listaUsuario: 'userList',
+  }
 
   constructor(
     private http: HttpClient
   ) { }
 
   fetchUsers(): Observable<IUsuario[]> {
+    const userList = this.getUserStorageList()
+    if (!!userList) {
+      console.log('Lista do Storage');
+      return of(userList);
+    }
+
     return this.http
       .get<IUsuario[]>(this.url)
       .pipe(
         map(
-          data => {
-            console.log(data);
-            localStorage.setItem('userList', JSON.stringify(data));
-            return data;
+          resp => {
+            console.log('Lista da Api');
+            localStorage.setItem(this.storageNames.listaUsuario, JSON.stringify(resp));
+            return resp;
           }
         ));
   }
 
-  private fetchUserData() {
-    const userList = localStorage.getItem('userList');
-    return !!userList ? JSON.parse(userList) : undefined;
+  addUser(user: IUsuario) {
+    const userList = this.getUserStorageList()
+    if (!!userList) {
+      userList.push(user);
+      localStorage.setItem(this.storageNames.listaUsuario, JSON.stringify(userList));
+    }
+  }
+
+  private getUserStorageList(): IUsuario[] {
+    const userListStr: string | null = localStorage.getItem(this.storageNames.listaUsuario);
+    const userList: IUsuario[] = !!userListStr ? JSON.parse(userListStr) : null;
+    return userList;
   }
 
   fetchLastUserId(): number {

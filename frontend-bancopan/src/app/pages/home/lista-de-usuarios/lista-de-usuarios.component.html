@@ -1,0 +1,5 @@
+<ul class="usuarios" *ngIf="!!usuarios && usuarios.length > 0">
+  <li class="usuario" *ngFor="let usuario of usuarios">
+    <app-usuario [usuario]="usuario"></app-usuario>
+  </li>
+</ul>

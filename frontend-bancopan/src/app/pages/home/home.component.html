@@ -1,14 +1,10 @@
 <div class="home">
-  <button>
+  <button (click)="openCadastro()">
     Adicionar Usuário
     <mat-icon aria-hidden="false" aria-label="Adicionar Usuário">
       add_circle_outline
     </mat-icon>
   </button>
 
-  <ul class="usuarios" *ngIf="!!usuarios && usuarios.length > 0">
-    <li class="usuario" *ngFor="let usuario of usuarios; trackBy:identificarUsuario">
-      <app-usuario [usuario]="usuario"></app-usuario>
-    </li>
-  </ul>
+  <app-lista-de-usuarios></app-lista-de-usuarios>
 </div>

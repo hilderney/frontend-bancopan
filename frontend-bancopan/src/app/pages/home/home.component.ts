@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { Component, Inject, OnInit } from '@angular/core';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
 import { UserService } from 'src/app/services/users/user.service';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @Component({
   selector: 'app-home',
@@ -10,40 +11,30 @@ import { UserService } from 'src/app/services/users/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  usuarios: IUsuario[] = [
-    {
-      name: 'My name 1',
-      cpf: '221.065.728.83',
-      email: 'usuario@um.com',
-      phone: '11981022578',
-    }
-    , {
-      name: 'My name 2',
-      cpf: '221.065.728.83',
-      email: 'usuario@um.com',
-      phone: '11981022578',
-    }
-  ];
-
-
+  usuario!: IUsuario;
 
   constructor(
     private userService: UserService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
-    this.fetchUsers();
   }
 
-  fetchUsers() {
-    const teste = this.userService.fetchUsers()
-      .pipe(take(1))
-      .subscribe();
-    console.log('retorno da Observable', teste);
-  }
+  openCadastro() {
+    const dialogRef = this.dialog
+      .open(CadastroComponent, {
+        disableClose: true,
+        autoFocus: true,
+        width: '100%',
+        data: {
+          usuario: this.usuario,
+        }
+      });
 
-  identificarUsuario(index: number, usuario: IUsuario) {
-    return usuario.name;
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      this.usuario = result.usuario;
+    });
   }
-
 }

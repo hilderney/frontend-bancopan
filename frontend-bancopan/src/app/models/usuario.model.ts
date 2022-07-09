@@ -16,7 +16,7 @@ export class usuarioModel implements IUsuario {
   }
 
   gerarNovoId(usuario: IUsuario): number {
-    return 0;
+    return 55;
   }
 
 }
