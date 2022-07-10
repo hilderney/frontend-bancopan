@@ -32,45 +32,47 @@ export class CpfPipe {
 
   formatCpfCnpj(numero: string | number): string {
     if (!!numero) {
-      let numeroCpf: string = numero.toString();
-      numeroCpf = numeroCpf.replace(/\D/g, "");
+      let value: string = numero.toString();
+      value = value.replace(/\D/g, "");
 
-      switch (numeroCpf.length) {
+      value = value.length > 14 ? value.substring(0, 13) : value;
+
+      switch (value.length) {
         case 4:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})/, " $1.$2");
+          value = value.replace(/(\d+)(\d{3})/, " $1.$2");
           break;
         case 5:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})/, " $1.$2");
+          value = value.replace(/(\d+)(\d{3})/, " $1.$2");
           break;
         case 6:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})/, " $1.$2");
+          value = value.replace(/(\d+)(\d{3})/, " $1.$2");
           break;
         case 7:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
+          value = value.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
           break;
         case 8:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
+          value = value.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
           break;
         case 9:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
+          value = value.replace(/(\d+)(\d{3})(\d{3})/, " $1.$2.$3");
           break;
         case 10:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})(\d{1})/, " $1.$2.$3-$4");
+          value = value.replace(/(\d+)(\d{3})(\d{3})(\d{1})/, " $1.$2.$3-$4");
           break;
         case 11:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})(\d{2})/, " $1.$2.$3-$4");
+          value = value.replace(/(\d+)(\d{3})(\d{3})(\d{2})/, " $1.$2.$3-$4");
           break;
         case 12:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})(\d{4})/, " $1.$2.$3/$4");
+          value = value.replace(/(\d+)(\d{3})(\d{3})(\d{4})/, " $1.$2.$3/$4");
           break;
         case 13:
-          numeroCpf = numeroCpf.replace(/(\d+)(\d{3})(\d{3})(\d{4})(\d{2})/, " $1.$2.$3/$4-$5");
+          value = value.replace(/(\d+)(\d{3})(\d{3})(\d{4})(\d{2})/, " $1.$2.$3/$4-$5");
           break;
         case 14:
-          numeroCpf = numeroCpf.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d+)/, " $1.$2.$3/$4-$5");
+          value = value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d+)/, " $1.$2.$3/$4-$5");
           break;
       }
-      return numeroCpf;
+      return value;
     }
     return '';
   }
