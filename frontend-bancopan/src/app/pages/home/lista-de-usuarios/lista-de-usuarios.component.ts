@@ -28,6 +28,5 @@ export class ListaDeUsuariosComponent implements OnInit {
           this.usuarios = resp;
         }
       );
-    console.log('retorno da Observable', teste);
   }
 }

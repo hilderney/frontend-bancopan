@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  Cadastrar Usuário 22222
+  <button class="btn-icon warn" (click)="onNoClick()">
+    <mat-icon outline aria-hidden="false" aria-label="Adicionar Usuário">
+      cancel
+    </mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+
+  <mat-form-field appearance="legacy">
+    <mat-label> Nome </mat-label>
+    <input matInput placeholder="Nome" [(ngModel)]="data.name">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label> CPF </mat-label>
+    <input matInput placeholder="CPF" [(ngModel)]="data.cpf">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label> E-mail </mat-label>
+    <input matInput placeholder="E-mail" [(ngModel)]="data.email">
+  </mat-form-field>
+
+  <mat-form-field appearance="legacy">
+    <mat-label> Telefone </mat-label>
+    <input matInput placeholder="Telefone" [(ngModel)]="data.phone">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button [mat-dialog-close]="data" cdkFocusInitial>
+    Cadastrar Usuário
+  </button>
+</div>

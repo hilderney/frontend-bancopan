@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
 import { UserService } from 'src/app/services/users/user.service';
-import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CadastroComponent } from './cadastro/cadastro.component';
 
 @Component({
@@ -11,7 +11,12 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 })
 export class HomeComponent implements OnInit {
 
-  usuario!: IUsuario;
+  usuario: IUsuario = {
+    name: '',
+    cpf: '',
+    phone: '',
+    email: '',
+  };
 
   constructor(
     private userService: UserService,
@@ -27,14 +32,10 @@ export class HomeComponent implements OnInit {
         disableClose: true,
         autoFocus: true,
         width: '100%',
-        data: {
-          usuario: this.usuario,
-        }
       });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      this.usuario = result.usuario;
+      this.usuario = result;
     });
   }
 }

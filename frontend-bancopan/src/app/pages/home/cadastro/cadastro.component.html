@@ -1,6 +1,6 @@
 <div mat-dialog-title>
   Cadastrar Usuário
-  <button class="btn-icon warn" (click)="onNoClick()">
+  <button class="btn-icon btn-cancel btn-right warn" (click)="onNoClick()">
     <mat-icon outline aria-hidden="false" aria-label="Adicionar Usuário">
       cancel
     </mat-icon>
@@ -9,32 +9,30 @@
 <div mat-dialog-content [formGroup]="form">
 
   <mat-form-field appearance="legacy">
-    <mat-label> Nome </mat-label>
-    <input matInput placeholder="Nome" formControlName="name">
+    <mat-label> Nome * </mat-label>
+    <input matInput placeholder="Nome completo (sem abreviações)" formControlName="name">
   </mat-form-field>
 
   <mat-form-field appearance="legacy">
-    <mat-label> CPF </mat-label>
-    <input matInput placeholder="CPF" formControlName="cpf">
+    <mat-label> CPF * </mat-label>
+    <input matInput placeholder="CPF" formControlName="cpf" cpfPipe>
   </mat-form-field>
 
   <mat-form-field appearance="legacy">
-    <mat-label> E-mail </mat-label>
+    <mat-label> E-mail * </mat-label>
     <input matInput placeholder="E-mail" formControlName="email">
   </mat-form-field>
 
   <mat-form-field appearance="legacy">
-    <mat-label> Telefone </mat-label>
-    <input matInput placeholder="Telefone" formControlName="phone">
+    <mat-label> Telefone * </mat-label>
+    <input matInput placeholder="Telefone" formControlName="phone" telefonePipe>
   </mat-form-field>
-
-  <pre>
-    {{ form.value | json }}
-  </pre>
 
 </div>
 <div mat-dialog-actions>
-  <button [mat-dialog-close]="data" cdkFocusInitial>
+  <button class="btn-center" cdkFocusInitial
+    (click)="cadastrarUsuario()"
+    [disabled]="form.invalid">
     Cadastrar Usuário
   </button>
 </div>

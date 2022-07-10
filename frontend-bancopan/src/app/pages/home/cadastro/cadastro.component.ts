@@ -33,8 +33,10 @@ export class CadastroComponent implements OnInit {
   }
 
   onNoClick(): void {
-    debugger;
-    this.data = this.form.getRawValue();
     this.dialogRef.close();
+  }
+
+  cadastrarUsuario() {
+    console.log('Register');
   }
 }

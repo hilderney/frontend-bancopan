@@ -11,6 +11,8 @@ import { ListaDeUsuariosComponent } from './lista-de-usuarios/lista-de-usuarios.
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CpfPipe } from 'src/app/shared/pipes/cpf.pipe';
+import { TelefonePipe } from 'src/app/shared/pipes/telefone.pipe';
 
 
 
@@ -19,18 +21,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     CadastroComponent,
     UsuarioComponent,
-    ListaDeUsuariosComponent
+    ListaDeUsuariosComponent,
+    CpfPipe,
+    TelefonePipe,
+
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   schemas: [
     NO_ERRORS_SCHEMA
