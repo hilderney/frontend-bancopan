@@ -1,7 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
+import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,14 +14,13 @@ export class CadastroComponent implements OnInit {
   public form!: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<CadastroComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IUsuario,
+    private service: UserService,
     private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<CadastroComponent>,
   ) { }
 
   ngOnInit() {
     this.iniciarFormulario();
-    console.log('data', this.data);
   }
 
   iniciarFormulario() {

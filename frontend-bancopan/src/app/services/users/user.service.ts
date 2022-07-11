@@ -25,8 +25,7 @@ export class UserService {
       return of(userList);
     }
 
-    return this.http
-      .get<IUsuario[]>(this.url)
+    return this.http.get<IUsuario[]>(this.url)
       .pipe(
         map(
           resp => {
