@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, take } from 'rxjs';
+import { map, take } from 'rxjs';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
+import { UserDataSharedService } from 'src/app/services/users/user-data-shared.service';
 import { UserService } from 'src/app/services/users/user.service';
 
 @Component({
@@ -13,11 +14,13 @@ export class ListaDeUsuariosComponent implements OnInit {
   usuarios!: IUsuario[];
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private shared: UserDataSharedService
   ) { }
 
   ngOnInit() {
     this.fetchUsers();
+    this.refreshListListener();
   }
 
   fetchUsers() {
@@ -28,5 +31,15 @@ export class ListaDeUsuariosComponent implements OnInit {
           this.usuarios = resp;
         }
       );
+  }
+
+  refreshListListener() {
+    this.shared.getRefreshList$()
+      .pipe(
+        map(refresh => {
+          if (refresh)
+            this.fetchUsers();
+        })
+      ).subscribe();
   }
 }

@@ -1,8 +1,8 @@
 <div class="usuario">
-  <div class="title">
-    {{ usuario.name }}
-  </div>
   <div class="content">
+    <div class="title">
+      {{ usuario.id }} : {{ usuario.name }}
+    </div>
     <div class="item">
       <label for=""> CPF: </label> <span>{{ usuario.cpf }}</span>
     </div>
@@ -14,6 +14,15 @@
     </div>
   </div>
   <div class="actions">
-
+    <button class="btn-icon btn-info" (click)="editarUsuario(usuario)">
+      <mat-icon aria-hidden="false" aria-label="Editar Usuário">
+        mode_edit_outline
+      </mat-icon>
+    </button>
+    <button class="btn-icon btn-cancel" (click)="removerUsuario(usuario)">
+      <mat-icon aria-hidden="false" aria-label="Remover Usuário">
+        highlight_off
+      </mat-icon>
+    </button>
   </div>
 </div>

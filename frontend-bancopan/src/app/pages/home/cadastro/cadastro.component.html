@@ -1,6 +1,6 @@
 <div mat-dialog-title>
   Cadastrar Usuário
-  <button class="btn-icon btn-cancel btn-right warn" (click)="onNoClick()">
+  <button class="btn-icon btn-cancel btn-right warn" (click)="closeDialod()">
     <mat-icon outline aria-hidden="false" aria-label="Adicionar Usuário">
       cancel
     </mat-icon>
@@ -30,9 +30,9 @@
 
 </div>
 <div mat-dialog-actions>
-  <button class="btn-center" cdkFocusInitial
+  <button class="btn-center"
     (click)="cadastrarUsuario()"
     [disabled]="form.invalid">
-    Cadastrar Usuário
+    {{ cadastrando ? 'Cadastrar Usuário' : 'Editar Usuário' }}
   </button>
 </div>

@@ -2,25 +2,27 @@
 
 .usuario {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: space-between;
   margin-top: $space-large;
   padding: $space-medium;
   border-left: 4px solid $accent-color;
   border-radius: 8px;
   box-shadow: 0px 1px 4px -1px $accent-color;
 
-  .title {
-    display: flex;
-    padding: 8px 0;
-    font-size: 1.4rem;
-  }
-
   .content {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: flex-start;
+    flex-grow: 1;
+
+    .title {
+      display: flex;
+      padding: 8px 0;
+      font-size: 1.4rem;
+    }
 
     .item {
       padding: 2px 0;
@@ -37,5 +39,12 @@
 
   .actions {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+    button {
+      margin: $space-medium;
+    }
   }
 }
