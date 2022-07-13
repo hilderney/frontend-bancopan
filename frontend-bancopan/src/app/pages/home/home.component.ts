@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
 import { UserService } from 'src/app/services/users/user.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListaDeUsuariosComponent } from './lista-de-usuarios/lista-de-usuarios.component';
 import { UserDataSharedService } from 'src/app/services/users/user-data-shared.service';
 import { map } from 'rxjs';
+import { usuarioModel } from 'src/app/models/usuario.model';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +17,13 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(ListaDeUsuariosComponent) listaComponent!: ListaDeUsuariosComponent;
 
-  usuario: IUsuario = {
+  usuario: IUsuario = new usuarioModel({
+    id: 0,
     name: '',
     cpf: '',
-    phone: '',
     email: '',
-  };
+    phone: ''
+  });
 
   constructor(
     private userService: UserService,

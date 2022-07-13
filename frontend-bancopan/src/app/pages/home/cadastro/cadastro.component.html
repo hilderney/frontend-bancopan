@@ -10,22 +10,22 @@
 
   <mat-form-field appearance="legacy">
     <mat-label> Nome * </mat-label>
-    <input matInput placeholder="Nome completo (sem abreviações)" formControlName="name">
+    <input matInput placeholder="Nome completo (sem abreviações)" name="name" formControlName="name">
   </mat-form-field>
 
-  <mat-form-field appearance="legacy">
+  <mat-form-field appearance="legacy" #userCpf>
     <mat-label> CPF * </mat-label>
-    <input matInput placeholder="CPF" formControlName="cpf" cpfPipe>
+    <input matInput placeholder="CPF" name="cpf" formControlName="cpf" cpfPipe>
   </mat-form-field>
 
   <mat-form-field appearance="legacy">
     <mat-label> E-mail * </mat-label>
-    <input matInput placeholder="E-mail" formControlName="email">
+    <input matInput placeholder="E-mail" name="email" formControlName="email">
   </mat-form-field>
 
-  <mat-form-field appearance="legacy">
+  <mat-form-field appearance="legacy" #userPhone>
     <mat-label> Telefone * </mat-label>
-    <input matInput placeholder="Telefone" formControlName="phone" telefonePipe>
+    <input matInput placeholder="Telefone" name="phone" formControlName="phone" telefonePipe>
   </mat-form-field>
 
 </div>

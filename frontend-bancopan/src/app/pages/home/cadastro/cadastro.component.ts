@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { map, Observable, take } from 'rxjs';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map, Observable, pipe, take } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IUsuario } from 'src/app/interfaces/usuario.interface';
 import { UserService } from 'src/app/services/users/user.service';
 import { UserDataSharedService } from 'src/app/services/users/user-data-shared.service';
+import { CpfPipe } from 'src/app/shared/pipes/cpf.pipe';
 
 @Component({
   selector: 'app-cadastro',
@@ -12,6 +13,9 @@ import { UserDataSharedService } from 'src/app/services/users/user-data-shared.s
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+
+  @ViewChild('userCpf') userCpf!: ElementRef;
+  @ViewChild('userPhone') userPhone!: ElementRef;
 
   cadastrando: boolean = true;
 
@@ -42,16 +46,26 @@ export class CadastroComponent implements OnInit {
   obterDadosUsuario() {
     this.shared.getUser$()
       .pipe(
+        take(1),
         map(
           (usuario: IUsuario) => {
             if (usuario.id! > 0) {
-              this.form.patchValue(usuario);
+              this.form.patchValue({
+                id: usuario.id,
+                name: usuario.name,
+                cpf: this.service.addCpfFormat(usuario.cpf),
+                email: usuario.email,
+                phone: this.service.addPhoneFormat(usuario.phone)
+              });
               this.cadastrando = false;
+              this.form.updateValueAndValidity();
             }
           }
         )
       )
-      .subscribe();
+      .subscribe(response => {
+
+      });
   }
 
   closeDialod(): void {
@@ -61,7 +75,7 @@ export class CadastroComponent implements OnInit {
 
   cadastrarUsuario() {
     if (this.form.valid) {
-      if (this.form.get('id')!.value > 0)
+      if (this.form.controls['id'].value === 0)
         this.service.addUser(this.form.getRawValue());
       else
         this.service.updateUser(this.form.getRawValue());

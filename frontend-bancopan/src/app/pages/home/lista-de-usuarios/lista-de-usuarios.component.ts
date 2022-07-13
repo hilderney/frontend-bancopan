@@ -24,11 +24,11 @@ export class ListaDeUsuariosComponent implements OnInit {
   }
 
   fetchUsers() {
-    const teste = this.userService.fetchUsers()
+    this.userService.fetchUsers()
       .pipe(take(1))
       .subscribe(
-        resp => {
-          this.usuarios = resp;
+        response => {
+          this.usuarios = response;
         }
       );
   }
