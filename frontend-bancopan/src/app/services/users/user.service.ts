@@ -97,13 +97,13 @@ export class UserService {
     let phoneMasked: string = phone;
 
     if (phone.length === 10) {
-      phoneMasked = phone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+      phoneMasked = phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
     } else if (phone.length === 11) {
-      phoneMasked = phone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+      phoneMasked = phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     } else if (phone.length === 12) {
-      phoneMasked = phone.replace(/(\d{2})(\d{2})(\d{4})(\d{4})/, "$1 ($2) $3-$4");
+      phoneMasked = phone.replace(/(\d{2})(\d{2})(\d{4})(\d{4})/, '+$1 ($2) $3-$4');
     } else if (phone.length === 13) {
-      phoneMasked = phone.replace(/(\d{2})(\d{2})(\d{5})(\d{4})/, "$1 ($2) $3-$4");
+      phoneMasked = phone.replace(/(\d{2})(\d{2})(\d{5})(\d{4})/, '+$1 ($2) $3-$4');
     }
     return phoneMasked;
   }
